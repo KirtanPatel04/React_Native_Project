@@ -21,6 +21,7 @@ npm run lint
 ```
 
 > If `npm install` is blocked, set your npm registry or use a VPN that can reach https://registry.npmjs.org.
+> For web builds, ensure the Expo web deps are installed: `npx expo install react-native-web react-dom @expo/metro-runtime react-native-reanimated`.
 
 ## Features
 - **3 screens** via bottom tabs: Home (weather + overview), Tasks (create/read/update), Resources (helpful links).
