@@ -1,0 +1,25 @@
+{
+  "expo": {
+    "name": "Smart Day Companion",
+    "slug": "smart-day-companion",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "smartdaycompanion",
+    "backgroundColor": "#0f172a",
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#0f172a"
+      }
+    },
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#0f172a"
+    },
+    "web": {
+      "bundler": "metro"
+    }
+  }
+}
