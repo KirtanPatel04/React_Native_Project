@@ -17,7 +17,11 @@ export const useWeather = () => {
     try {
       const { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== Location.PermissionStatus.GRANTED) {
-        setState({ loading: false, error: 'Location permission was denied', permissionStatus: status });
+        setState({
+          loading: false,
+          error: 'Location permission is required to load your forecast. Please enable it in Settings.',
+          permissionStatus: status,
+        });
         return;
       }
       const coords = await Location.getCurrentPositionAsync({});

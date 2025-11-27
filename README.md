@@ -28,7 +28,8 @@ npm run lint
 - **State management:** Context + hooks so all screens share task data.
 - **Data layer:**
   - Location permission handled with friendly messaging via `expo-location`.
-  - Forecast pulled from the free Open-Meteo REST API through `src/lib/api.ts`.
+  - Forecast pulled from the free Open-Meteo REST API through `src/lib/api.ts`, including hourly (24-hour) and 7-day outlooks.
+  - Self-care idea fetched hourly from the Bored API (relaxation category).
   - Task list persisted locally with AsyncStorage.
 - **Create/Read flows:** add tasks with notes, mark done, or remove.
 - **Accessibility:** semantic roles (list, checkbox, button, alert), high-contrast colors, readable sizing.
@@ -55,7 +56,7 @@ src/
 - Upload the resulting IPA/APK or share the Expo link with testers.
 
 ## Demo outline (3–5 minutes)
-1. **Home:** allow location, show live temperature/condition, refresh.
+1. **Home:** allow location, show live temperature/condition, scroll hourly + weekly forecast, refresh.
 2. **Tasks:** add a task and notes, mark complete, observe stored state.
-3. **Resources:** open an external self-care article.
+3. **Resources:** auto-refreshed self-care idea plus external articles.
 4. **Close:** show QR/build flow for trying it on-device.
