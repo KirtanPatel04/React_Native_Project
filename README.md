@@ -7,7 +7,7 @@ A 3-screen mobile helper that pairs lightweight task tracking with location-awar
 ```bash
 # install dependencies
 npm install
-# if you see missing native deps, install them via Expo
+# if you see missing native deps, install them via Expo (fixes the datetime picker error on web)
 npx expo install expo-notifications @react-native-community/datetimepicker
 
 # start the Expo dev server (QR code for Expo Go)
