@@ -14,6 +14,7 @@
         "backgroundColor": "#0f172a"
       }
     },
+    "plugins": ["expo-notifications"],
     "splash": {
       "resizeMode": "contain",
       "backgroundColor": "#0f172a"

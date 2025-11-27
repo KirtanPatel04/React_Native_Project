@@ -7,6 +7,8 @@ A 3-screen mobile helper that pairs lightweight task tracking with location-awar
 ```bash
 # install dependencies
 npm install
+# if you see missing native deps, install them via Expo
+npx expo install expo-notifications @react-native-community/datetimepicker
 
 # start the Expo dev server (QR code for Expo Go)
 npm start
@@ -31,7 +33,7 @@ npm run lint
   - Forecast pulled from the free Open-Meteo REST API through `src/lib/api.ts`, including hourly (24-hour) and 7-day outlooks.
   - Self-care idea fetched hourly from the Bored API (relaxation category).
   - Task list persisted locally with AsyncStorage.
-- **Create/Read flows:** add tasks with notes, mark done, or remove.
+- **Create/Read flows:** add tasks with notes, day + time reminders (local notification pop-ups), mark done, or remove.
 - **Accessibility:** semantic roles (list, checkbox, button, alert), high-contrast colors, readable sizing.
 - **Ready for devices:** Expo config (`app.json`) uses Expo defaults for icons/splash so no binary files are tracked; run through Expo Go or build with EAS.
 
@@ -57,6 +59,6 @@ src/
 
 ## Demo outline (3–5 minutes)
 1. **Home:** allow location, show live temperature/condition, scroll hourly + weekly forecast, refresh.
-2. **Tasks:** add a task and notes, mark complete, observe stored state.
+2. **Tasks:** add a task with notes and day/time reminder, mark complete, observe stored state and reminder pop-ups.
 3. **Resources:** auto-refreshed self-care idea plus external articles.
 4. **Close:** show QR/build flow for trying it on-device.

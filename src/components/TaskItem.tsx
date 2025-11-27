@@ -20,6 +20,11 @@ const TaskItem: React.FC<Props> = ({ task, onToggle, onRemove }) => (
     <View style={styles.textContainer}>
       <Text style={[styles.title, task.completed && styles.completed]}>{task.title}</Text>
       {task.notes ? <Text style={styles.notes}>{task.notes}</Text> : null}
+      {task.reminderAt ? (
+        <Text style={styles.reminder}>
+          Reminder: {new Date(task.reminderAt).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' })}
+        </Text>
+      ) : null}
     </View>
     <PrimaryButton label="Remove" onPress={() => onRemove(task.id)} />
   </View>
@@ -53,6 +58,11 @@ const styles = StyleSheet.create({
   notes: {
     color: '#cbd5e1',
     marginTop: 2,
+  },
+  reminder: {
+    color: '#38bdf8',
+    marginTop: 4,
+    fontSize: 13,
   },
   completed: {
     textDecorationLine: 'line-through',
