@@ -12,13 +12,37 @@ interface SelfCareState {
   lastUpdated?: string;
 }
 
+const fallbackIdeas: SelfCareSuggestion[] = [
+  { activity: 'Try a 5-minute box breathing exercise', type: 'breathing' },
+  { activity: 'Stretch your neck and shoulders gently', type: 'movement' },
+  { activity: 'Write down one thing you are grateful for', type: 'journaling' },
+  { activity: 'Make a warm tea and sip it mindfully', type: 'comfort' },
+  { activity: 'Send a kind text to a friend or family member', type: 'connection' },
+];
+
 const fetchSelfCare = async (): Promise<SelfCareSuggestion> => {
-  const response = await fetch('https://www.boredapi.com/api/activity?type=relaxation');
-  if (!response.ok) {
-    throw new Error('Failed to load self-care idea');
+  const tryEndpoints = [
+    'https://www.boredapi.com/api/activity?type=relaxation',
+    'https://www.boredapi.com/api/activity',
+  ];
+
+  for (const url of tryEndpoints) {
+    const response = await fetch(url);
+    if (!response.ok) {
+      continue;
+    }
+    const json = await response.json();
+    if (json?.activity) {
+      return { activity: json.activity, type: json.type };
+    }
   }
-  const json = await response.json();
-  return { activity: json.activity, type: json.type };
+
+  const fallback = fallbackIdeas[Math.floor(Math.random() * fallbackIdeas.length)];
+  if (fallback) {
+    return fallback;
+  }
+
+  throw new Error('Failed to load self-care idea');
 };
 
 export const useSelfCare = () => {
@@ -34,7 +58,12 @@ export const useSelfCare = () => {
         lastUpdated: new Date().toLocaleTimeString(),
       });
     } catch (error) {
-      setState({ loading: false, error: 'Could not refresh self-care idea. Try again.' });
+      const fallback = fallbackIdeas[Math.floor(Math.random() * fallbackIdeas.length)];
+      setState({
+        loading: false,
+        suggestion: fallback,
+        lastUpdated: new Date().toLocaleTimeString(),
+      });
     }
   }, []);
 
